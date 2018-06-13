@@ -13,22 +13,77 @@ datagroup: thesis_default_datagroup {
 
 persist_with: thesis_default_datagroup
 
+
+# Base case explore
 explore: yelp_business {
   join: yelp_business_attributes {
     type: left_outer
     sql_on: ${yelp_business.business_id} = ${yelp_business_attributes.business_id} ;;
-    relationship: many_to_many
+    relationship: one_to_many
+  }
+  join: yelp_business_hours {
+    type: left_outer
+    sql_on: ${yelp_business.business_id} = ${yelp_business_hours.business_id} ;;
+    relationship: one_to_many
+  }
+  join: yelp_checkin {
+    type: left_outer
+    sql_on: ${yelp_business.business_id} = ${yelp_checkin.business_id} ;;
+    relationship: one_to_many
+  }
+  join: yelp_tip {
+    type: left_outer
+    sql_on: ${yelp_business.business_id} = ${yelp_tip.business_id} ;;
+    relationship: one_to_many
+  }
+  join: yelp_review {
+    type: left_outer
+    sql_on: ${yelp_business.business_id} = ${yelp_review.business_id} ;;
+    relationship: one_to_many
+  }
+  join: yelp_user {
+    type: left_outer
+    sql_on: ${yelp_user.user_id} = ${yelp_review.user_id} OR ${yelp_user.user_id} = ${yelp_tip.user_id} ;;
+    relationship: one_to_many
+  }
+
+}
+
+## User Explore
+explore: yelp_user {
+  join: yelp_tip {
+    type: left_outer
+    sql_on: ${yelp_tip.user_id} = ${yelp_user.user_id} ;;
+    relationship: one_to_many
+  }
+  join: yelp_review {
+    type: left_outer
+    sql_on: ${yelp_review.user_id} = ${yelp_user.user_id} ;;
+    relationship: one_to_many
   }
 }
 
-explore: yelp_business_attributes {}
-
-explore: yelp_business_hours {}
-
-explore: yelp_checkin {}
-
-explore: yelp_review {}
-
-explore: yelp_tip {}
-
-explore: yelp_user {}
+#
+# explore: yelp_business_attributes {}
+#
+# explore: yelp_business_hours {}
+#
+# explore: yelp_checkin {
+#   join: yelp_business {
+#     type: left_outer
+#     sql_on: ${yelp_checkin.business_id} = ${yelp_business.business_id}  ;;
+#     relationship: many_to_one
+#   }
+# }
+#
+# explore: yelp_review {
+#   join: yelp_user {
+#     type: left_outer
+#     sql_on: ${yelp_review.user_id} = ${yelp_user.user_id} ;;
+#     relationship: many_to_one
+#   }
+# }
+#
+# explore: yelp_tip {}
+#
+# explore: yelp_user {}
