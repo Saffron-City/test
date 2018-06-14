@@ -25,4 +25,11 @@ view: yelp_checkin {
     type: count
     drill_fields: []
   }
+
+  measure: total_checkins {
+    label: "Total Checkins"
+    type: sum
+    sql: ${TABLE}.checkins ;;
+    drill_fields: [business_id]
+  }
 }

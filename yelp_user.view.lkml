@@ -105,11 +105,16 @@ view: yelp_user {
     type: string
     sql: ${TABLE}.user_id ;;
   }
-
-  dimension: yelping_since {
-    type: string
-    sql: ${TABLE}.yelping_since ;;
+  dimension_group: yelping_since {
+    type: time
+    timeframes: [day_of_week, month, year, date]
+    sql: STR_TO_DATE(${TABLE}.yelping_since, '%Y-%m-%d') ;;
+    datatype: date
   }
+#   dimension: yelping_since {
+#     type: string
+#     sql: ${TABLE}.yelping_since ;;
+#   }
 
   measure: count {
     type: count

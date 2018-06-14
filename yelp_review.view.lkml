@@ -10,11 +10,16 @@ view: yelp_review {
     type: string
     sql: ${TABLE}.cool ;;
   }
-
-  dimension: date {
-    type: string
-    sql: ${TABLE}.date ;;
+  dimension_group: date {
+    type: time
+    timeframes: [day_of_week, month, year, date]
+    sql: STR_TO_DATE(${TABLE}.date, '%Y-%m-%d') ;;
+    datatype: date
   }
+#   dimension: date {
+#     type: string
+#     sql: ${TABLE}.date ;;
+#   }
 
   dimension: funny {
     type: string
