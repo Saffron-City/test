@@ -11,6 +11,7 @@ view: food_per_city {
         OR categories like '%tea%'
         OR categories like '%bars%'
         OR categories like '%pubs%')
+        --
         AND is_open = '1'
         GROUP BY 2,3 ;;
   }

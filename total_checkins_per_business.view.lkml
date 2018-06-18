@@ -3,6 +3,7 @@ view: total_checkins_per_business {
     sql_trigger_value: select 1 ;;
     sql:
       SELECT business_id, SUM(checkins) as checkins FROM yelp_checkin
+      --
       GROUP BY 1 ;;
   }
   dimension: business_id {
