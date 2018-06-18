@@ -13,7 +13,7 @@ view: yelp_review {
   dimension_group: date {
     type: time
     timeframes: [day_of_week, month, year, date]
-    sql: STR_TO_DATE(${TABLE}.date, '%Y-%m-%d') ;;
+    sql: ${TABLE}.date ;;
     datatype: date
   }
 #   dimension: date {

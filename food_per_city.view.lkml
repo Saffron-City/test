@@ -17,5 +17,14 @@ view: food_per_city {
   dimension: business_id {
     type: string
     primary_key: yes
+    sql: ${TABLE}.business_id ;;
+  }
+  dimension: city {
+    type: string
+    sql: ${TABLE}.city ;;
+  }
+  dimension: state {
+    type: string
+    sql: ${TABLE}.state ;;
   }
 }
