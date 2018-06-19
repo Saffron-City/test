@@ -12,11 +12,12 @@ view: most_popular_day_for_checkin {
             group by 1,2
             ) der
             group by 1
+            --
           ) derz
-          --
           on derz.business_id = c.business_id
           group by 1,2,3
           having sum(c.checkins) = derz.max ;;
+    indexes: ["business_id"]
   }
   dimension: business_id {
     type: string

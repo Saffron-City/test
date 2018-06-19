@@ -1,5 +1,6 @@
 view: food_per_city {
   derived_table: {
+    sql_trigger_value: select 1 ;;
     sql:
       SELECT count(business_id) as number_of_food_places
         , city
@@ -10,10 +11,10 @@ view: food_per_city {
         OR categories like '%coffee%'
         OR categories like '%tea%'
         OR categories like '%bars%'
-        OR categories like '%pubs%')
-        --
+        OR categories like '%pubs%') --
         AND is_open = '1'
         GROUP BY 2,3 ;;
+    indexes: ["business_id"]
   }
   dimension: business_id {
     type: string

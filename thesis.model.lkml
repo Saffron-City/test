@@ -8,7 +8,7 @@ include: "*.dashboard"
 
 datagroup: thesis_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
+  max_cache_age: "10000 hour"
 }
 
 persist_with: thesis_default_datagroup
@@ -45,6 +45,11 @@ explore: yelp_business {
     type: left_outer
     sql_on: ${yelp_user.user_id} = ${yelp_review.user_id} OR ${yelp_user.user_id} = ${yelp_tip.user_id} ;;
     relationship: one_to_many
+  }
+  join: total_checkins_per_business {
+    type: left_outer
+    sql_on: ${yelp_business.business_id} = ${total_checkins_per_business.business_id} ;;
+    relationship: one_to_one
   }
 
 }
