@@ -9,6 +9,7 @@ view: yelp_business {
   dimension: business_id {
     type: string
     sql: ${TABLE}.business_id ;;
+    primary_key: yes
   }
 
   dimension: categories {
@@ -26,16 +27,20 @@ view: yelp_business {
     sql: ${TABLE}.is_open ;;
   }
 
-  dimension: latitude {
-    type: string
-    sql: ${TABLE}.latitude ;;
+#   dimension: latitude {
+#     type: string
+#     sql: ${TABLE}.latitude ;;
+#   }
+#
+#   dimension: longitude {
+#     type: string
+#     sql: ${TABLE}.longitude ;;
+#   }
+  dimension: coordinates {
+    type: location
+    sql_latitude:${TABLE}.latitude ;;
+    sql_longitude:${TABLE}.longitude ;;
   }
-
-  dimension: longitude {
-    type: string
-    sql: ${TABLE}.longitude ;;
-  }
-
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;

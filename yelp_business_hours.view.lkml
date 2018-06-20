@@ -4,6 +4,7 @@ view: yelp_business_hours {
   dimension: business_id {
     type: string
     sql: ${TABLE}.business_id ;;
+    primary_key: yes
   }
 
   dimension: friday {

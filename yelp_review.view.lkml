@@ -29,6 +29,7 @@ view: yelp_review {
   dimension: review_id {
     type: string
     sql: ${TABLE}.review_id ;;
+    primary_key: yes
   }
 
   dimension: stars {
@@ -53,6 +54,35 @@ view: yelp_review {
 
   measure: count {
     type: count
+   # sql: ${TABLE}. ;;
     drill_fields: []
+  }
+
+  measure: min_stars {
+    type: min
+    sql: min(${TABLE}.stars) ;;
+  }
+
+  measure: first_quartile_stars {
+    type: percentile
+    percentile: 25
+    sql: ${TABLE}.stars ;;
+
+  }
+
+  measure: median_stars {
+    type: median
+    sql: ${TABLE}.stars ;;
+  }
+
+  measure: third_quartile_stars {
+    type: percentile
+    percentile: 75
+    sql: ${TABLE}.stars ;;
+  }
+
+  measure: max_stars {
+    type: max
+    sql: max(${TABLE}.stars) ;;
   }
 }

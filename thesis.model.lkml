@@ -68,6 +68,12 @@ explore: yelp_user {
   }
 }
 
+### Testing
+explore: food_per_city {}
+
+explore: most_popular_day_for_checkin {}
+
+explore: total_checkins_per_business {}
 #
 # explore: yelp_business_attributes {}
 #

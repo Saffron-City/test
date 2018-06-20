@@ -104,6 +104,7 @@ view: yelp_user {
   dimension: user_id {
     type: string
     sql: ${TABLE}.user_id ;;
+    primary_key: yes
   }
   dimension_group: yelping_since {
     type: time

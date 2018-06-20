@@ -14,12 +14,12 @@ view: food_per_city {
         OR categories like '%pubs%') --
         AND is_open = '1'
         GROUP BY 2,3 ;;
-    indexes: ["business_id"]
+    indexes: ["city","state"]
   }
-  dimension: business_id {
-    type: string
+  dimension: number_of_restaurants {
+    type: number
     primary_key: yes
-    sql: ${TABLE}.business_id ;;
+    sql: ${TABLE}.number_of_food_places ;;
   }
   dimension: city {
     type: string
