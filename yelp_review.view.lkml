@@ -12,7 +12,7 @@ view: yelp_review {
   }
   dimension_group: date {
     type: time
-    timeframes: [day_of_week, month, year, date]
+    timeframes: [day_of_week, month, quarter, year, date]
     sql: ${TABLE}.date ;;
     datatype: date
   }
@@ -42,6 +42,11 @@ view: yelp_review {
     sql: ${TABLE}.text ;;
   }
 
+  dimension: review_length {
+    type: string
+    sql: char_length(${TABLE}.text) ;;
+  }
+
   dimension: useful {
     type: string
     sql: ${TABLE}.useful ;;
@@ -58,31 +63,58 @@ view: yelp_review {
     drill_fields: []
   }
 
-  measure: min_stars {
+#   measure: min_stars {
+#     type: min
+#     sql: ${TABLE}.stars ;;
+#   }
+#
+#   measure: lower_quartile_stars {
+#     type: percentile
+#     percentile: 25
+#     sql: ${TABLE}.stars ;;
+#   }
+#
+#   measure: median_stars {
+#     type: median
+#     sql: ${TABLE}.stars ;;
+#   }
+#
+#   measure: upper_quartile_stars {
+#     type: percentile
+#     percentile: 75
+#     sql: ${TABLE}.stars ;;
+#   }
+#
+#   measure: max_stars {
+#     type: max
+#     sql: ${TABLE}.stars ;;
+#   }
+
+  measure: min_text {
     type: min
-    sql: min(${TABLE}.stars) ;;
+    sql: char_length(${TABLE}.text) ;;
   }
 
-  measure: first_quartile_stars {
+  measure: lower_quartile_text {
     type: percentile
     percentile: 25
-    sql: ${TABLE}.stars ;;
-
+    sql: char_length(${TABLE}.text) ;;
   }
 
-  measure: median_stars {
+  measure: median_text {
     type: median
-    sql: ${TABLE}.stars ;;
+    sql: char_length(${TABLE}.text) ;;
   }
 
-  measure: third_quartile_stars {
+  measure: upper_quartile_text {
     type: percentile
     percentile: 75
-    sql: ${TABLE}.stars ;;
+    sql: char_length(${TABLE}.text) ;;
   }
 
-  measure: max_stars {
+  measure: max_text {
     type: max
-    sql: max(${TABLE}.stars) ;;
+    sql: char_length(${TABLE}.text) ;;
   }
+
 }

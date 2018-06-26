@@ -68,12 +68,19 @@ explore: yelp_user {
   }
 }
 
-### Testing
-explore: food_per_city {}
+# Block Retention Analysis
+# Source: https://discourse.looker.com/t/analytic-block-retention-analysis/870
 
-explore: most_popular_day_for_checkin {}
+explore: monthly_activity {
+  join: yelp_user{
+    type: left_outer
+    sql_on: ${monthly_activity.user_id} = ${yelp_user.user_id} ;;
+    relationship: many_to_one
+  }
+}
 
-explore: total_checkins_per_business {}
+
+
 #
 # explore: yelp_business_attributes {}
 #
@@ -87,13 +94,13 @@ explore: total_checkins_per_business {}
 #   }
 # }
 #
-# explore: yelp_review {
-#   join: yelp_user {
-#     type: left_outer
-#     sql_on: ${yelp_review.user_id} = ${yelp_user.user_id} ;;
-#     relationship: many_to_one
-#   }
-# }
+explore: yelp_review {
+  join: yelp_user {
+    type: left_outer
+    sql_on: ${yelp_review.user_id} = ${yelp_user.user_id} ;;
+    relationship: many_to_one
+  }
+}
 #
 # explore: yelp_tip {}
 #
