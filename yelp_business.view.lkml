@@ -136,8 +136,7 @@ view: yelp_business {
               WHEN {% parameter starting_point %} = 'sc' THEN 36.974261
               WHEN {% parameter starting_point %} = 'msoe' THEN 43.044104
               WHEN {% parameter starting_point %} = 'uwm' THEN 43.076260
-              -- WHEN {% parameter starting_point %} = 'berlin' THEN 52.5200
-              ELSE 48.864716 END ;;
+              ELSE 36.1162 END ;;
   }
 
   dimension: distance_city_long {
@@ -147,8 +146,7 @@ view: yelp_business {
               WHEN {% parameter starting_point %} = 'sc' THEN -122.026518
               WHEN {% parameter starting_point %} = 'msoe' THEN -87.908014
               WHEN {% parameter starting_point %} = 'uwm' THEN -89.400004
-              -- WHEN {% parameter starting_point %} = 'berlin' THEN 13.404954
-              ELSE 2.349014 END ;;
+              ELSE -115.1745 END ;;
   }
 
   dimension: location_of_selected_city {
